@@ -2,13 +2,15 @@
 var express = require('express');
 var router = express.Router();
 var foodService = require('services/food.service');
+var voiceService = require('services/voice.service');
 
 // routes
 router.post('/insert', insertfoodWords);
 router.get('/getAll', getAll);
 router.get('/insertWord/:word', insertfoodWord)
 router.get('/clearAll', clearAll);
-router.post('/conversation', conversation);
+router.post('/textConversation', textConversation);
+router.get('/conversation', conversation);
 
 
 module.exports = router;
@@ -67,13 +69,35 @@ function insertfoodWord(req, res) {
         });
 }
 
-function conversation(req, res) {
+function textConversation(req, res) {
     console.log("Retrieving results for conversation: " + req.body.conversation);
     foodService.conversation(req.body.conversation, req.body.location, req.body.radius)
         .then(function(results) {
-            res.send(results);
+            res.send([].concat.apply([], results));
         })
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function conversation(req, res) {
+    voiceService.sendAudio().then(function(result){
+        var text = result.results[0].alternatives[0].transcript;
+        console.log(text);
+        return text;
+    }).then(function(convo){
+    var location = {
+		"lat":"45.5017156", 
+		"lng":"-73.5728669"
+	}
+    var radius = 500;
+    foodService.conversation(convo, location, radius)
+        .then(function(results) {
+            res.send([].concat.apply([], results));
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+    })
+    
 }

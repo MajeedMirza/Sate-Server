@@ -2,7 +2,7 @@ const rp = require('request-promise-native')
 const Promise = require('promise')
  
 const DEFAULT_PARAMS = {
- key: 'AIzaSyCqd6GD5CClmBDrV9ANpDeIHBJ5qK0fHjU',
+ key: 'AIzaSyCpFr_uq-lwc_e5wZp4XR1irYYONpVKX8g',
  type: 'restaurant'
 }
  

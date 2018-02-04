@@ -46,6 +46,8 @@ function insertFoodWords(foodArray, location, radius){
                 result.rating = resto.rating;
                 result.keyword = foodword;
                 result.distance = geodist(location, resto.geometry.location, {unit: 'meters'});
+                result.lat = resto.geometry.location.lat;
+                result.lng = resto.geometry.location.lng;
                 if(resto.opening_hours){
                     result.open = "closed"
                     if(resto.opening_hours.open_now){
@@ -76,7 +78,8 @@ function insertFoodWord(foodWord){
 
 //Clears db
 function clearAll(){
-    return foodWords.remove({});
+    //return foodWords.remove({});
+    return foodWords.createIndex( { food: "text" } )
 }
 
 function conversation(convo, location, radius){

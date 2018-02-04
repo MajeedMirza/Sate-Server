@@ -26,7 +26,8 @@
     "request-promise-native": "^1.0.5",
     "rootpath": "^0.1.2",
     "shortid": "^2.2.8",
-    "simple-encryptor": "^1.1.0"
+    "simple-encryptor": "^1.1.0",
+    "watson-developer-cloud": "^3.0.5"
   },
   "license": "MIT"
 }
