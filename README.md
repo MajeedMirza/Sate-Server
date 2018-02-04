@@ -1,4 +1,4 @@
-<img border="0" alt="SATE" src="https://github.com/hooseon17/sate-client-angular/blob/master/src/assets/SATE_LOGO_DARK.png" width="20%" height="20%" />
+<img border="0" alt="SATE" src="https://github.com/hooseon17/sate-client-angular/blob/master/src/assets/SATE_LOGO_DARK.png" width="18%" height="18%" />
 
 ## Inspiration
 The goal was to build an app to help out friends by making the process of selecting a restaurant a lot easier. 
