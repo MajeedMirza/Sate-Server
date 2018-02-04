@@ -15,6 +15,7 @@ service.insertFoodWords = insertFoodWords;
 service.insertFoodWord = insertFoodWord; //Single word test route
 service.clearAll = clearAll;
 service.conversation = conversation;
+service.train = train;
 
 //export all methods needed externally 
 module.exports = service;
@@ -70,7 +71,7 @@ function insertFoodWords(foodArray, location, radius){
 //Inserts food words individually into the foodwords collection
 function insertFoodWord(foodWord){
     foodWord = foodWord.toLowerCase();
-   return foodWords.update({food: foodWord}, {
+    return foodWords.update({food: foodWord}, {
         $inc: {count: 1}, 
         $set: {food: foodWord}
     }, {upsert: true})
@@ -94,3 +95,10 @@ function pullFoodWords(convo){
     })
 }
 
+function train(trainList){
+    trainList = trainList.split(".");
+    trainList.forEach(function(foodword) {
+        insertFoodWord(foodword.trim());
+    });
+    return Promise.resolve();
+}

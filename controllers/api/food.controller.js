@@ -11,6 +11,7 @@ router.get('/insertWord/:word', insertfoodWord)
 router.get('/clearAll', clearAll);
 router.post('/textConversation', textConversation);
 router.get('/conversation', conversation);
+router.post('/train', train);
 
 
 module.exports = router;
@@ -47,15 +48,6 @@ function clearAll(req, res) {
         });
 }
 
-function insertWord(req, res) {
-    foodService.getAllWords()
-        .then(function (foodWords) {
-            res.send(foodWords);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
 
 function insertfoodWord(req, res) {
     var word = req.params.word;
@@ -100,4 +92,15 @@ function conversation(req, res) {
         });
     })
     
+}
+
+function train(req, res) {
+    console.log("Training with these words: " + req.body.foodWords);
+    foodService.train(req.body.foodWords)
+        .then(function(results) {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
 }
