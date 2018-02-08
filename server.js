@@ -18,6 +18,13 @@ config.Ip = "localhost"
 config.portUrl = "http://" + config.Ip + ":" + config.port;
 config.apiUrl = config.portUrl + "/api"
 
+var options = {
+  key: fs.readFileSync('certs/client-key.pem'),
+  cert: fs.readFileSync('certs/client-cert.pem'),
+  requestCert: false,
+  rejectUnauthorized: false
+};
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,11 +41,15 @@ app.get('/', function (req, res) {
     return res.redirect('/SATE');
 });
 
-
 //var server = app.listen(config.port, config.Ip, function () {
-var server = app.listen(process.env.PORT || '3001', function () {
+var server = http.createServer(app).listen(process.env.PORT || '3001', function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
+
+var server2 = https.createServer(options, app).listen('3002', function() {
+    console.log('Server listening at https://' + server2.address().address + ':' + server2.address().port);
+});
+
 
 
    

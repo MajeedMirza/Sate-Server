@@ -1,10 +1,11 @@
 var SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 var fs = require('fs');
 var path = require('path');
+var config = require('config/config.json');
 
 var speech_to_text = new SpeechToTextV1 ({
-  username: '1be8ec3f-266f-4e20-80f1-28574750003c',
-  password: 'HgPcg6cZRt2Q'
+  username: config.BMUser,
+  password: config.BMPass
 });
 
 var service = {};

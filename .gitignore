@@ -60,3 +60,7 @@ typings/
 .DS_Store
 
 .vscode/
+
+certs/
+
+config/config.json

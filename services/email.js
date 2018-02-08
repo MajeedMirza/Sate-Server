@@ -1,5 +1,6 @@
 'use strict';
 const nodemailer = require('nodemailer');
+var config = require('config/config.json');
 
 var mail = {}; 
 mail.sendMail = sendMail;
@@ -11,14 +12,14 @@ function sendMail(sendTo, subject, body){
         port: 465,
         secure: true, // secure:true for port 465, secure:false for port 587
         auth: {
-            user: 'SateMchacks@gmail.com',
-            pass: 'Sate1Project' //Put password here
+            user: config.emailUser,
+            pass: config.emailPass //Put password here
         }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'SateMchacks@gmail.com', // sender address
+        from: config.emailUser, // sender address
         to: sendTo, // list of receivers
         subject: subject, // Subject line
         text: body, // plain text body

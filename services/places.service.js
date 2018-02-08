@@ -1,8 +1,9 @@
 const rp = require('request-promise-native')
 const Promise = require('promise')
+var config = require('config/config.json');
  
 const DEFAULT_PARAMS = {
- key: 'AIzaSyCpFr_uq-lwc_e5wZp4XR1irYYONpVKX8g',
+ key: config.Gkey,
  type: 'restaurant'
 }
  
