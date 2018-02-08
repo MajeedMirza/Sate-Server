@@ -1,5 +1,0 @@
-﻿{
-    "connectionString2": "mongodb://test:test@ds123718.mlab.com:23718/foodwords",
-    "connectionString": "mongodb://localhost/foodwords",
-    "secret": "This is a secret"
-}
